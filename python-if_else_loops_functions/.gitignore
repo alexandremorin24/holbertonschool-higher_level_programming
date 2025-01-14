@@ -1,0 +1,9 @@
+*
+!*.py
+!README.md
+!.gitignore
+*main*
+
+*.pyc
+*__pycache__/
+*.swp
