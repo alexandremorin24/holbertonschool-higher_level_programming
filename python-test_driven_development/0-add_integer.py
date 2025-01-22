@@ -31,13 +31,18 @@ def add_integer(a, b=98):
         Traceback (most recent call last):
         ...
         TypeError: b must be an integer
-        >>> add_integer(None)
+        >>> add_integer(None, 2)
         Traceback (most recent call last):
         ...
         TypeError: a must be an integer
+        >>> add_integer(2, None)
+        Traceback (most recent call last):
+        ...
+        TypeError: b must be an integer
     """
-    if not isinstance(a, (int, float)):
+    if not isinstance(a, (int, float)) or a is None:
         raise TypeError("a must be an integer")
-    if not isinstance(b(int, float)):
+    if not isinstance(b, (int, float)) or b is None:
         raise TypeError("b must be an integer")
+
     return int(a) + int(b)
