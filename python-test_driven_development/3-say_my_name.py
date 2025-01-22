@@ -8,7 +8,8 @@ This module provides a function `say_my_name` that prints:
 def say_my_name(first_name, last_name=""):
     """
     Prints "My name is <first name> <last name>".
-    Strips leading and trailing spaces from both `first_name` and `last_name`.
+    Strips leading and trailing spaces from
+    both `first_name` and `last_name`.
 
     Args:
         first_name (str): The first name to print.
