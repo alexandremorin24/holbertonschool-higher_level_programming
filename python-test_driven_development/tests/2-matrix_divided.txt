@@ -2,8 +2,8 @@
 Tests for matrix_divided
 =======================
 
->>> from 2-matrix_divided import matrix_divided
-
+>>> import importlib
+>>> add_integer = importlib.import_module('2-matrix_divided').matrix_divided
 matrix = [
     [1, 2, 3],
     [4, 5, 6]

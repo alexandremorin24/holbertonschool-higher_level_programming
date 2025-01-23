@@ -1,0 +1,20 @@
+=======================
+Tests for text_indentation
+=======================
+
+>>> import importlib
+>>> add_integer = importlib.import_module('5-text_indentation').text_indentation
+
+>>> text_indentation("First line. Second line? Third line: Fourth line.")
+First line.
+
+Second line?
+
+Third line:
+
+Fourth line.
+
+>>> text_indentation(2)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
