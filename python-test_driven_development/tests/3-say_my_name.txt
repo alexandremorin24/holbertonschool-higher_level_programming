@@ -3,7 +3,7 @@ Tests for say_my_name
 =======================
 
 >>> import importlib
->>> add_integer = importlib.import_module('3-say_my_name').say_my_name
+>>> say_my_name = importlib.import_module('3-say_my_name').say_my_name
 
 >>> say_my_name("John", "Smith")
 My name is John Smith

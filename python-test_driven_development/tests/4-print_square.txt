@@ -3,7 +3,7 @@ Tests for print_square
 =======================
 
 >>> import importlib
->>> add_integer = importlib.import_module('4-print_square').print_square
+>>> print_square = importlib.import_module('4-print_square').print_square
 
 >>> print_square(4)
 ####

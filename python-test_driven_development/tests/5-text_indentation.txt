@@ -3,7 +3,7 @@ Tests for text_indentation
 =======================
 
 >>> import importlib
->>> add_integer = importlib.import_module('5-text_indentation').text_indentation
+>>> text_indentation = importlib.import_module('5-text_indentation').text_indentation
 
 >>> text_indentation("First line. Second line? Third line: Fourth line.")
 First line.
