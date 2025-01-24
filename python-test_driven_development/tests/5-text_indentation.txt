@@ -6,15 +6,32 @@ Tests for text_indentation
 >>> text_indentation = importlib.import_module('5-text_indentation').text_indentation
 
 >>> text_indentation("First line. Second line? Third line: Fourth line.")
-First line.
+First line
+<BLANKLINE>
+Second line
+<BLANKLINE>
+Third line
+<BLANKLINE>
+Fourth line
 
-Second line?
+>>> text_indentation("No punctuation in this text")
+No punctuation in this text
 
-Third line:
+>>> text_indentation("Multiple spaces before and after . ? and : .   ?   :   ")
+Multiple spaces before and after
+<BLANKLINE>
+and
 
-Fourth line.
+>>> text_indentation("A line with no punctuation")
+A line with no punctuation
 
->>> text_indentation(2)
+>>> text_indentation("   Leading spaces should be trimmed.  ")
+Leading spaces should be trimmed
+
+>>> text_indentation(42)
 Traceback (most recent call last):
     ...
 TypeError: text must be a string
+
+>>> text_indentation("")
+<BLANKLINE>

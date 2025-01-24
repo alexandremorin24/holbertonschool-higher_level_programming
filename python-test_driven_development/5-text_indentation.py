@@ -15,27 +15,25 @@ def text_indentation(text):
 
     Raises:
         TypeError: If `text` is not a string.
-
-    Example:
-        >>> text_indentation("Hello. How are you? I am fine: thanks.")
-        Hello.
-
-        How are you?
-
-        I am fine:
-
-        thanks.
     """
-
-    if not isinstance(text, (str)):
+    if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    separator = ".?:"
+    # Build the result with two new lines after each separator
+    result = ""
+    i = 0
+    while i < len(text):
+        if text[i] in ".?:":
+            # Add two new lines after a separator
+            result += "\n\n"
+            i += 1
+            # Skip spaces after separator
+            while i < len(text) and text[i] == " ":
+                i += 1
+            continue
+        result += text[i]
+        i += 1
 
-    for sep in ".?:":
-        text = text.replace(sep, sep + "\n\n")
-
-    lines = [line.strip() for line in text.split("\n") if line.strip()]
-    formatted_text = "\n".join(lines)
-
-    print(formatted_text)
+    # Print the result, ensuring no leading/trailing spaces on each line
+    print("\n\n".join(line.strip()
+          for line in result.split("\n") if line.strip()))
