@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
 Module 3-square
-Defines a class Square with validation for size and a method to compute the area.
+Defines a class Square with validation for size and a method 
+to compute the area.
 """
 
 
