@@ -10,8 +10,7 @@ class Rectangle:
     Tracks the number of instances created and deleted.
     Supports customizable string representation symbol.
     """
-
-    # Public class attribute: counts the number of Rectangle instances
+    print_symbol = "#"
     number_of_instances = 0
 
     def __init__(self, width=0, height=0):
@@ -106,10 +105,11 @@ class Rectangle:
         """
         if self.__width == 0 or self.__height == 0:
             return ""
-            return "\n".join(
-                [str(self.print_symbol) *
-                 self.__width for _ in range(self.__height)]
-            )
+        lines = [
+            str(self.print_symbol) * self.__width
+            for _ in range(self.__height)
+        ]
+        return "\n".join(lines)
 
     def __repr__(self):
         """
@@ -156,3 +156,24 @@ class Rectangle:
             return rect_2
         else:
             return rect_1
+
+    @classmethod
+    def square(cls, size=0):
+        """
+        Creates a new Rectangle instance with width and height equal to size.
+
+        Args:
+            size (int): The size of the square (default: 0).
+
+        Returns:
+            Rectangle: A new Rectangle instance with width == height == size.
+
+        Raises:
+            TypeError: If size is not an integer.
+            ValueError: If size is negative.
+        """
+        if not isinstance(size, int):
+            raise TypeError("size must be an integer")
+        if size < 0:
+            raise ValueError("size must be >= 0")
+        return cls(size, size)

@@ -10,8 +10,7 @@ class Rectangle:
     Tracks the number of instances created and deleted.
     Supports customizable string representation symbol.
     """
-
-    # Public class attribute: counts the number of Rectangle instances
+    print_symbol = "#"
     number_of_instances = 0
 
     def __init__(self, width=0, height=0):
@@ -106,11 +105,11 @@ class Rectangle:
         """
         if self.__width == 0 or self.__height == 0:
             return ""
-        # Use print_symbol to represent the rectangle
-            return "\n".join(
-                [str(self.print_symbol) *
-                 self.__width for _ in range(self.__height)]
-            )
+        lines = [
+            str(self.print_symbol) * self.__width
+            for _ in range(self.__height)
+        ]
+        return "\n".join(lines)
 
     def __repr__(self):
         """

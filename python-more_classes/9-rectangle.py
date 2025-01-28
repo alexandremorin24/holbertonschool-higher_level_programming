@@ -10,7 +10,7 @@ class Rectangle:
     Tracks the number of instances created and deleted.
     Supports customizable string representation symbol.
     """
-
+    print_symbol = "#"
     number_of_instances = 0
 
     def __init__(self, width=0, height=0):
@@ -115,7 +115,6 @@ class Rectangle:
         if size < 0:
             raise ValueError("size must be >= 0")
 
-        # Utilise cls pour créer une nouvelle instance
         return cls(size, size)
 
     def __str__(self):
@@ -128,11 +127,11 @@ class Rectangle:
         """
         if self.__width == 0 or self.__height == 0:
             return ""
-        # Use print_symbol to represent the rectangle
-            return "\n".join(
-                [str(self.print_symbol) *
-                 self.__width for _ in range(self.__height)]
-            )
+        lines = [
+            str(self.print_symbol) * self.__width
+            for _ in range(self.__height)
+        ]
+        return "\n".join(lines)
 
     def __repr__(self):
         """
@@ -168,14 +167,11 @@ class Rectangle:
         Raises:
             TypeError: If rect_1 or rect_2 is not an instance of Rectangle.
         """
-
         if not isinstance(rect_1, Rectangle):
             raise TypeError("rect_1 must be an instance of Rectangle")
-
         if not isinstance(rect_2, Rectangle):
             raise TypeError("rect_2 must be an instance of Rectangle")
 
         if rect_1.area() < rect_2.area():
             return rect_2
-        else:
-            return rect_1
+        return rect_1

@@ -8,6 +8,7 @@ class Rectangle:
     """
     Represents a Rectangle with validated width and height.
     """
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
         """
@@ -88,8 +89,15 @@ class Rectangle:
         """
         if self.__width == 0 or self.__height == 0:
             return ""
-        else:
-            return "\n".join(
-                [str(self.print_symbol) *
-                 self.__width for _ in range(self.__height)]
-            )
+        lines = [
+            str(self.print_symbol) * self.__width
+            for _ in range(self.__height)
+        ]
+        return "\n".join(lines)
+
+    def __repr__(self):
+        """
+        Returns a string representation of the rectangle
+        that can be used to recreate a new instance with eval().
+        """
+        return f"Rectangle({self.__width}, {self.__height})"
