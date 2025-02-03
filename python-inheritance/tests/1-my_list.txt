@@ -1,0 +1,21 @@
+#!/usr/bin/python3
+MyList = __import__('1-my_list').MyList
+
+# Création d'une instance de MyList
+my_list = MyList()
+
+# Ajout de nombres à la liste
+my_list.append(1)
+my_list.append(4)
+my_list.append(2)
+my_list.append(3)
+my_list.append(5)
+
+# Affichage de la liste originale
+print(my_list)
+
+# Affichage de la liste triée sans modifier l'originale
+my_list.print_sorted()
+
+# Vérification que la liste originale n'a pas changé
+print(my_list)
