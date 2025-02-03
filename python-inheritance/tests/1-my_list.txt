@@ -1,21 +1,22 @@
 #!/usr/bin/python3
-MyList = __import__('1-my_list').MyList
+"""
+Test cases for MyList class
+"""
 
-# Création d'une instance de MyList
-my_list = MyList()
+>>> MyList = __import__('1-my_list').MyList
 
-# Ajout de nombres à la liste
-my_list.append(1)
-my_list.append(4)
-my_list.append(2)
-my_list.append(3)
-my_list.append(5)
+>>> my_list = MyList()
+>>> my_list.append(1)
+>>> my_list.append(4)
+>>> my_list.append(2)
+>>> my_list.append(3)
+>>> my_list.append(5)
 
-# Affichage de la liste originale
-print(my_list)
+>>> print(my_list)
+[1, 4, 2, 3, 5]
 
-# Affichage de la liste triée sans modifier l'originale
-my_list.print_sorted()
+>>> my_list.print_sorted()
+[1, 2, 3, 4, 5]
 
-# Vérification que la liste originale n'a pas changé
-print(my_list)
+>>> print(my_list)  # La liste originale ne doit pas être modifiée
+[1, 4, 2, 3, 5]
