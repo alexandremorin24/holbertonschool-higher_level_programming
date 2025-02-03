@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """
-This module defines an empty class BaseGeometry.
+This module defines the function inherits_from.
 """
 
 
-class BaseGeometry:
+def inherits_from(obj, a_class):
     """
-    An empty class.
+    Checks if an object is an instance of a class or a subclass.
     """
-    pass
+    return isinstance(obj, a_class) and type(obj) is not a_class
