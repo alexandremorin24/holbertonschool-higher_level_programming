@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 Test cases for MyList class
 """
@@ -18,5 +17,5 @@ Test cases for MyList class
 >>> my_list.print_sorted()
 [1, 2, 3, 4, 5]
 
->>> print(my_list)  # La liste originale ne doit pas être modifiée
+>>> print(my_list)
 [1, 4, 2, 3, 5]
