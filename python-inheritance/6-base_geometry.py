@@ -8,4 +8,6 @@ class BaseGeometry:
     """
     A class used to represent BaseGeometry.
     """
-    raise Exception("area() is not implemented")
+
+    def area(self):
+        raise Exception("area() is not implemented")
