@@ -3,7 +3,7 @@
 Defines an abstract class Shape and its concrete subclasses Circle and Rectangle.
 """
 
-import math
+from math import pi
 from abc import ABC, abstractmethod
 
 
@@ -33,15 +33,15 @@ class Circle(Shape):
         """
         Initializes a Circle with a given radius.
         """
-        self.radius = radius
+        self.radius = abs(radius)
 
     def area(self):
         """Returns the area of the circle."""
-        return math.pi * self.radius ** 2
+        return pi * self.radius ** 2
 
     def perimeter(self):
         """Returns the perimeter (circumference) of the circle."""
-        return 2 * math.pi * self.radius
+        return 2 * pi * self.radius
 
 
 class Rectangle(Shape):
