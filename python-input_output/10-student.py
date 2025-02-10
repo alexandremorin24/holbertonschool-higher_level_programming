@@ -20,4 +20,7 @@ class Student:
         if attrs is None:
             return self.__dict__
         else:
-            return {key: self.__dict__[key] for key in attrs if key in self.__dict__}
+            return {
+                key: self.__dict__[key]
+                for key in attrs if key in self.__dict__
+            }
