@@ -26,8 +26,10 @@ class CustomObject:
         try:
             with open(filename, "wb") as file:
                 pickle.dump(self, file)
+            return True  # ✅ Ajout du return True
         except Exception as e:
             print(f"Error during serialization: {e}")
+            return False  # ✅ Retourne False en cas d'échec
 
     @classmethod
     def deserialize(cls, filename):
@@ -35,6 +37,6 @@ class CustomObject:
         try:
             with open(filename, "rb") as file:
                 return pickle.load(file)
-        except (FileNotFoundError, pickle.UnpicklingError) as e:
+        except (FileNotFoundError, pickle.UnpicklingError, EOFError) as e:
             print(f"Error during deserialization: {e}")
-            return None
+            return None  # ✅ Gère les fichiers vides
