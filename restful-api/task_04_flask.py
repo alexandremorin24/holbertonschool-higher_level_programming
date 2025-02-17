@@ -1,36 +1,47 @@
 #!/usr/bin/python3
+"""Flask API for user management."""
 
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
 users = {
-    "jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"},
-    "john": {"username": "john", "name": "John", "age": 30, "city": "New York"}
+    "jane": {
+        "username": "jane",
+        "name": "Jane",
+        "age": 28,
+        "city": "Los Angeles"
+    },
+    "john": {
+        "username": "john",
+        "name": "John",
+        "age": 30,
+        "city": "New York"
+    }
 }
 
 
 @app.route("/")
 def home():
-    """Returns a welcome message."""
-    return "Welcome to the Flask API!"
+    """Return a welcome message."""
+    return jsonify({"message": "Welcome to the Flask API!"})
 
 
 @app.route("/data")
 def get_users():
-    """Returns a list of all usernames."""
+    """Return a list of all usernames."""
     return jsonify(list(users.keys()))
 
 
 @app.route("/status")
 def status():
-    """Returns API status."""
+    """Return API status."""
     return jsonify({"status": "OK"})
 
 
 @app.route("/users/<username>")
 def get_user(username):
-    """Returns user details if found, otherwise returns an error."""
+    """Return user details if found, otherwise return an error."""
     if username in users:
         return jsonify(users[username])
     return jsonify({"error": "User not found"}), 404
@@ -38,7 +49,7 @@ def get_user(username):
 
 @app.route("/add_user", methods=["POST"])
 def add_user():
-    """Adds a new user if the username is provided in the request."""
+    """Add a new user if the username is provided in the request."""
     data = request.get_json()
 
     if "username" not in data:
