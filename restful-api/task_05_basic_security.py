@@ -72,8 +72,7 @@ def login():
             not check_password_hash(users[username]["password"], password)):
         return jsonify({"error": "Invalid credentials"}), 401
 
-    access_token = create_access_token(
-        identity={"username": username, "role": users[username]["role"]})
+    access_token = create_access_token(identity=username)
     return jsonify({"access_token": access_token})
 
 
@@ -88,10 +87,8 @@ def jwt_protected():
 @app.route("/admin-only")
 @jwt_required()
 def admin_only():
-    """Route accessible only with admin role."""
-    current_user = get_jwt_identity()
-
-    if current_user["role"] != "admin":
+    username = get_jwt_identity()
+    if users[username]["role"] != "admin":
         return jsonify({"error": "Admin access required"}), 403
     return jsonify({"message": "Admin Access: Granted"})
 
