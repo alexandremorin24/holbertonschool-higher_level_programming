@@ -41,6 +41,7 @@ users = {
 
 @auth.verify_password
 def verify_password(username, password):
+    """Verify username and password for basic auth."""
     if username in users:
         stored_password = users[username]["password"]
         if check_password_hash(stored_password, password):
@@ -51,13 +52,14 @@ def verify_password(username, password):
 @app.route("/basic-protected")
 @auth.login_required
 def basic_protected():
-    """Accessible uniquement avec Basic Auth."""
+    """Route accessible only with Basic Auth."""
     return jsonify({"message": "Basic Auth: Access Granted"})
 
 
 # JWT Authentication
 @app.route("/login", methods=["POST"])
 def login():
+    """Login route to obtain JWT token."""
     data = request.get_json()
 
     if not data or "username" not in data or "password" not in data:
@@ -78,6 +80,7 @@ def login():
 @app.route("/jwt-protected")
 @jwt_required()
 def jwt_protected():
+    """Route accessible only with valid JWT token."""
     current_user = get_jwt_identity()
     return jsonify({"message": "JWT Auth: Access Granted"})
 
@@ -85,6 +88,7 @@ def jwt_protected():
 @app.route("/admin-only")
 @jwt_required()
 def admin_only():
+    """Route accessible only with admin role."""
     current_user = get_jwt_identity()
 
     if current_user["role"] != "admin":
@@ -95,26 +99,31 @@ def admin_only():
 # 🔹 Gestion des erreurs JWT
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
+    """Handle missing JWT token."""
     return jsonify({"error": "Missing or invalid token"}), 401
 
 
 @jwt.invalid_token_loader
 def handle_invalid_token_error(err):
+    """Handle invalid JWT token."""
     return jsonify({"error": "Invalid token"}), 401
 
 
 @jwt.expired_token_loader
 def handle_expired_token_error(err):
+    """Handle expired JWT token."""
     return jsonify({"error": "Token has expired"}), 401
 
 
 @jwt.revoked_token_loader
 def handle_revoked_token_error(err):
+    """Handle revoked JWT token."""
     return jsonify({"error": "Token has been revoked"}), 401
 
 
 @jwt.needs_fresh_token_loader
 def handle_needs_fresh_token_error(err):
+    """Handle when fresh token is required."""
     return jsonify({"error": "Fresh token required"}), 401
 
 
