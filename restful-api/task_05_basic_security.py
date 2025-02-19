@@ -8,7 +8,6 @@ This API provides:
 - Protected routes requiring valid authentication
 """
 
-
 from flask import Flask, jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from flask_jwt_extended import (
@@ -24,10 +23,20 @@ app.config["JWT_SECRET_KEY"] = (
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
 
+users = {
+    "user1": {
+        "username": "user1",
+        "password": generate_password_hash("password"),
+        "role": "user"
+    },
+    "admin1": {
+        "username": "admin1",
+        "password": generate_password_hash("password"),
+        "role": "admin"
+    }
+}
 
-users = {}
-
-# Basic auth
+# Basic Authentication
 
 
 @auth.verify_password
@@ -46,27 +55,27 @@ def basic_protected():
     return jsonify({"message": "Basic Auth: Access Granted"})
 
 
-# JWT Auth
-
-
+# JWT Authentication
 @app.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
-    username = data.get("username")
-    password = data.get("password")
+
+    if not data or "username" not in data or "password" not in data:
+        return jsonify({"error": "Missing username or password"}), 400
+
+    username = data["username"]
+    password = data["password"]
 
     if (username not in users or
             not check_password_hash(users[username]["password"], password)):
-
         return jsonify({"error": "Invalid credentials"}), 401
 
     access_token = create_access_token(
-        identity={"username": username, "role": users[username]["role"]}
-    )
+        identity={"username": username, "role": users[username]["role"]})
     return jsonify({"access_token": access_token})
 
 
-@app.route("/jwt/protected")
+@app.route("/jwt-protected")
 @jwt_required()
 def jwt_protected():
     current_user = get_jwt_identity()
@@ -83,6 +92,7 @@ def admin_only():
     return jsonify({"message": "Admin Access: Granted"})
 
 
+# 🔹 Gestion des erreurs JWT
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
     return jsonify({"error": "Missing or invalid token"}), 401
