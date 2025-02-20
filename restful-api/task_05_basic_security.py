@@ -4,6 +4,7 @@ API security implementation with Basic Authentication and JWT Authentication.
 Background: API security is of paramount importance, especially when the API is
 exposed to the wider internet.
 """
+
 from flask import Flask, jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from flask_jwt_extended import (
