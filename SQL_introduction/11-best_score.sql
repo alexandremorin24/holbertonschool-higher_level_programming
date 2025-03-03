@@ -1,1 +1,6 @@
-SELECT score, name FROM second_table WHERE score >= 10 ORDER BY score DESC;
+-- This script lists all records from second_table where score is greater than or equal to 10, ordered by highest score first
+SELECT score,
+    name
+FROM second_table
+WHERE score >= 10
+ORDER BY score DESC;
