@@ -1,0 +1,32 @@
+# Ignore the virtual environment folder
+venv/
+myenv/
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore Jupyter Notebook checkpoints (if applicable)
+.ipynb_checkpoints/
+
+# Ignore logs and cache files
+*.log
+*.sqlite3
+instance/
+
+# Ignore environment variables files (if applicable)
+.env
+.env.local
+.env.*.local
+*.env
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore Python virtual environment packages (if you use pipenv or poetry)
+Pipfile
+Pipfile.lock
+poetry.lock
